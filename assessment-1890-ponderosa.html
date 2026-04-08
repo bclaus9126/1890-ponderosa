@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your River Property Assessment · 1890 Ponderosa Dr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --river: #2A4A5E;
+    --river-deep: #162E3C;
+    --river-mid: #3D6678;
+    --water: #4A8FA8;
+    --water-light: #A8D4E0;
+    --water-pale: #EAF4F7;
+    --sand: #F5EFE6;
+    --bark: #6B4F3A;
+    --stone: #8A9BA8;
+    --white: #FFFFFF;
+    --ink: #1A2A32;
+    --ink-mid: #3D5060;
+    --ink-light: #7A909C;
+    --amber: #C4852A;
+    --amber-pale: #FAF0E0;
+    --rust: #B84A2A;
+    --sage: #4A7A5A;
+    --border: rgba(42,74,94,0.12);
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--sand);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Hero */
+  .hero {
+    background: var(--river-deep);
+    padding: 52px 28px 44px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 60%;
+    background: linear-gradient(to top, rgba(74,143,168,0.12), transparent);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '〰〰〰〰〰〰〰〰〰〰〰〰';
+    position: absolute;
+    bottom: 12px; left: 0; right: 0;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(168,212,224,0.2);
+    letter-spacing: 2px;
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--water-light);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero-eyebrow::before,
+  .hero-eyebrow::after {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--water-light);
+    opacity: 0.5;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 7vw, 48px);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--water-light);
+  }
+  .hero-address {
+    font-size: 13px;
+    color: var(--stone);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+  }
+  .hero-dom {
+    display: inline-block;
+    margin-top: 20px;
+    background: rgba(196,133,42,0.2);
+    border: 1px solid rgba(196,133,42,0.4);
+    border-radius: 20px;
+    padding: 5px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #F0C070;
+    letter-spacing: 0.04em;
+  }
+
+  /* Container */
+  .container {
+    max-width: 660px;
+    margin: 0 auto;
+    padding: 32px 20px 64px;
+  }
+
+  /* Intro card */
+  .intro-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .intro-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--water), var(--river));
+  }
+  .intro-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--ink-mid);
+    font-weight: 300;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+  }
+  .intro-text strong { font-weight: 600; color: var(--ink); }
+  .agent-sig {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+  .agent-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--water-pale);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: var(--river);
+    flex-shrink: 0;
+    border: 1px solid var(--water-light);
+  }
+  .agent-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .agent-title { font-size: 12px; color: var(--ink-light); margin-top: 2px; font-weight: 300; }
+
+  /* Stats */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .stat-card {
+    background: var(--river-deep);
+    border-radius: 12px;
+    padding: 18px 14px;
+    text-align: center;
+  }
+  .stat-card .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+  .stat-card .num.amber { color: #F0C070; }
+  .stat-card .lbl { font-size: 10px; color: var(--stone); letter-spacing: 0.07em; text-transform: uppercase; font-weight: 300; }
+
+  /* Section divider */
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 28px 0 14px;
+  }
+  .section-head .line { flex: 1; height: 1px; background: var(--border); }
+  .section-head .label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: var(--river-mid);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* Diagnosis */
+  .diag-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin-bottom: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+  .diag-card:hover { box-shadow: 0 4px 24px rgba(42,74,94,0.1); border-color: var(--water-light); }
+  .diag-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 17px 20px;
+  }
+  .diag-icon {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+  .diag-icon.red { background: #FEF0EE; }
+  .diag-icon.amber { background: #FDF5E8; }
+  .diag-icon.blue { background: var(--water-pale); }
+  .diag-icon.green { background: #EEF6F0; }
+  .diag-label { font-size: 14px; font-weight: 500; color: var(--ink); flex: 1; }
+  .diag-tag {
+    font-size: 10px; font-weight: 500;
+    padding: 3px 10px; border-radius: 20px;
+    letter-spacing: 0.04em; white-space: nowrap;
+  }
+  .diag-tag.red { background: #FDE8E4; color: var(--rust); }
+  .diag-tag.amber { background: #FDF0D6; color: #8A5A10; }
+  .diag-tag.blue { background: var(--water-pale); color: var(--river-mid); }
+  .diag-tag.green { background: #E4F2E8; color: var(--sage); }
+  .diag-chevron { font-size: 11px; color: var(--ink-light); transition: transform 0.25s; margin-left: 6px; }
+  .diag-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.25s;
+    padding: 0 20px;
+    font-size: 13.5px; line-height: 1.78; color: var(--ink-mid); font-weight: 300;
+  }
+  .diag-body.open { max-height: 220px; padding: 0 20px 18px; }
+  .diag-chevron.open { transform: rotate(180deg); }
+
+  /* STR spotlight */
+  .str-card {
+    background: linear-gradient(135deg, var(--river) 0%, var(--river-deep) 100%);
+    border-radius: var(--radius);
+    padding: 26px;
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+  .str-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .str-card-sub { font-size: 13px; color: var(--water-light); font-weight: 300; margin-bottom: 18px; line-height: 1.65; }
+  .str-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .str-metric {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 14px 10px;
+    text-align: center;
+  }
+  .str-metric .m-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: #F0C070;
+  }
+  .str-metric .m-label { font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 3px; }
+
+  /* Quiz */
+  .quiz-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 28px;
+    border: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+  .quiz-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .quiz-sub { font-size: 13px; color: var(--ink-light); font-weight: 300; margin-bottom: 22px; }
+  .quiz-step { display: none; }
+  .quiz-step.active { display: block; }
+  .quiz-q { font-size: 15px; font-weight: 400; color: var(--ink); margin-bottom: 14px; line-height: 1.55; }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-option {
+    background: var(--water-pale);
+    border: 1px solid rgba(74,143,168,0.2);
+    border-radius: 10px;
+    padding: 13px 16px;
+    font-size: 14px;
+    color: var(--ink-mid);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+  }
+  .quiz-option:hover { background: var(--water-light); border-color: var(--water); color: var(--river-deep); }
+  .quiz-option.selected { background: var(--river); border-color: var(--river); color: var(--white); }
+  .quiz-progress { display: flex; gap: 6px; margin-bottom: 20px; }
+  .quiz-dot { height: 3px; flex: 1; border-radius: 2px; background: rgba(42,74,94,0.12); transition: background 0.3s; }
+  .quiz-dot.done { background: var(--water); }
+  .quiz-dot.active { background: rgba(74,143,168,0.4); }
+
+  /* Result */
+  .result-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 28px;
+    margin-bottom: 12px;
+    display: none;
+    overflow: hidden;
+    position: relative;
+  }
+  .result-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--water), var(--river));
+  }
+  .result-card.show { display: block; }
+  .result-score-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 18px;
+  }
+  .result-gauge {
+    width: 84px; height: 84px;
+    border-radius: 50%;
+    border: 2px solid var(--water-light);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    flex-shrink: 0;
+    background: var(--water-pale);
+  }
+  .result-score-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--river);
+    line-height: 1;
+  }
+  .result-score-label { font-size: 9px; color: var(--ink-light); letter-spacing: 0.06em; text-transform: uppercase; }
+  .result-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .result-body { font-size: 14px; line-height: 1.78; color: var(--ink-mid); font-weight: 300; margin-bottom: 22px; }
+
+  /* CTA */
+  .cta-block {
+    background: var(--water-pale);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    border: 1px solid rgba(74,143,168,0.2);
+  }
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--river-deep);
+    margin-bottom: 6px;
+  }
+  .cta-sub { font-size: 13px; color: var(--ink-mid); font-weight: 300; margin-bottom: 18px; }
+  .cta-buttons { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .btn {
+    padding: 13px 22px; border-radius: 10px;
+    font-size: 14px; font-weight: 500;
+    cursor: pointer; border: none;
+    font-family: 'Jost', sans-serif;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.18s;
+  }
+  .btn-primary { background: var(--river-deep); color: var(--white); }
+  .btn-primary:hover { background: var(--river); }
+  .btn-secondary { background: transparent; color: var(--river); border: 1px solid rgba(42,74,94,0.3); }
+  .btn-secondary:hover { background: var(--water-pale); }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 24px 20px;
+    font-size: 11px;
+    color: var(--ink-light);
+    letter-spacing: 0.05em;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 420px) {
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .str-metrics { grid-template-columns: 1fr 1fr; }
+    .hero { padding: 40px 20px 36px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-eyebrow">River Property Analysis</div>
+  <div class="hero-title">An Honest Look at<br><em>What Happened</em></div>
+  <div class="hero-address">1890 Ponderosa Dr · New Braunfels, TX 78132 · Sattler Estates</div>
+  <div class="hero-dom">309 Days on Market · Expired April 4, 2026</div>
+</div>
+
+<div class="container">
+
+  <!-- Intro -->
+  <div class="intro-card">
+    <div class="intro-text">
+      You have a genuinely <strong>rare property</strong> — direct Guadalupe River access, a working short-term rental, a renovated single-story on nearly half an acre. This home should have sold. The fact that it didn't after 309 days tells me the problem wasn't the property. <strong>It was the strategy.</strong>
+    </div>
+    <div class="agent-sig">
+      <div class="agent-avatar">YN</div>
+      <div>
+        <div class="agent-name">[Your Name]</div>
+        <div class="agent-title">[Brokerage] · Hill Country & River Property Specialist</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="num amber">309</div>
+      <div class="lbl">Days listed</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">$824</div>
+      <div class="lbl">Per sq ft listed</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">$227</div>
+      <div class="lbl">NB avg $/sq ft</div>
+    </div>
+  </div>
+
+  <!-- STR spotlight -->
+  <div class="str-card">
+    <div class="str-card-title">The STR Factor — Your Biggest Missed Asset</div>
+    <div class="str-card-sub">Your home is an active short-term rental on the Guadalupe River. This is not a footnote — it's a headline. The right buyer pool isn't a traditional homebuyer. It's an investor or lifestyle buyer who will pay a premium for proven STR income. That audience requires a completely different marketing approach.</div>
+    <div class="str-metrics">
+      <div class="str-metric">
+        <div class="m-num">STR</div>
+        <div class="m-label">Income producing</div>
+      </div>
+      <div class="str-metric">
+        <div class="m-num">~70%</div>
+        <div class="m-label">Hill Country STR occupancy avg</div>
+      </div>
+      <div class="str-metric">
+        <div class="m-num">$945K</div>
+        <div class="m-label">Comparable active listing nearby</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Diagnosis -->
+  <div class="section-head">
+    <div class="line"></div>
+    <div class="label">Listing Diagnosis</div>
+    <div class="line"></div>
+  </div>
+
+  <div class="diag-card" onclick="toggleDiag(this)">
+    <div class="diag-header">
+      <div class="diag-icon red">⚠️</div>
+      <div class="diag-label">Wrong buyer audience entirely</div>
+      <div class="diag-tag red">Critical</div>
+      <div class="diag-chevron">▼</div>
+    </div>
+    <div class="diag-body">At $824/sq ft, this home was priced 3.6x the New Braunfels average of $227/sq ft. That price is only justifiable to a buyer who understands riverfront scarcity, STR income potential, and Hill Country lifestyle value. A standard MLS listing reaches mostly conventional homebuyers who see an 880 sq ft home at $725K and move on. The listing needed to be marketed directly to STR investors, second-home buyers, and vacation property seekers — a completely different channel.</div>
+  </div>
+
+  <div class="diag-card" onclick="toggleDiag(this)">
+    <div class="diag-header">
+      <div class="diag-icon red">📋</div>
+      <div class="diag-label">STR income data was never presented</div>
+      <div class="diag-tag red">Critical</div>
+      <div class="diag-chevron">▼</div>
+    </div>
+    <div class="diag-body">The listing description mentions "also a short term rental" almost as an afterthought. For an investor buyer, the most important data points are annual gross revenue, occupancy rate, average nightly rate, and net income after expenses. None of this was in the listing. A buyer who can't model the return won't make an offer — they'll just move on to a listing that shows the numbers.</div>
+  </div>
+
+  <div class="diag-card" onclick="toggleDiag(this)">
+    <div class="diag-header">
+      <div class="diag-icon amber">📸</div>
+      <div class="diag-label">Marketing didn't match the price point</div>
+      <div class="diag-tag amber">High impact</div>
+      <div class="diag-chevron">▼</div>
+    </div>
+    <div class="diag-body">A $725,000 riverfront property with STR income demands professional photography, aerial drone footage of the river access, a virtual tour (which the MLS notes did exist but wasn't promoted effectively), and lifestyle content showing the property in use — tubing launches, evening patios, the Guadalupe at golden hour. At this price, buyers are making an emotional and financial decision simultaneously. The marketing needs to sell the lifestyle first and the numbers second.</div>
+  </div>
+
+  <div class="diag-card" onclick="toggleDiag(this)">
+    <div class="diag-header">
+      <div class="diag-icon amber">🏗️</div>
+      <div class="diag-label">Showing logistics worked against it</div>
+      <div class="diag-tag amber">Medium impact</div>
+      <div class="diag-chevron">▼</div>
+    </div>
+    <div class="diag-body">Active STR properties are notoriously difficult to show — guests book weekends, the best times to view are when it's occupied. The agent remarks confirm this ("be sure to make an appointment"). For out-of-town investor buyers — who are your most likely purchaser — friction in the showing process kills deals. A dedicated showing strategy, video walkthroughs, and flexible access options are essential for STR properties.</div>
+  </div>
+
+  <div class="diag-card" onclick="toggleDiag(this)">
+    <div class="diag-header">
+      <div class="diag-icon blue">🌊</div>
+      <div class="diag-label">The home's real value proposition</div>
+      <div class="diag-tag blue">Opportunity</div>
+      <div class="diag-chevron">▼</div>
+    </div>
+    <div class="diag-body">Direct Guadalupe River access is genuinely scarce and appreciating. No HOA, no city tax, metal roof, completely renovated, oversized garage with conversion potential, nearly half an acre at 70x263 ft. A comparable active listing at 2420 Ponderosa is asking $945K. Priced and marketed correctly to the right audience, this property has real room. The fundamentals are strong — the execution needed work.</div>
+  </div>
+
+  <div class="diag-card" onclick="toggleDiag(this)">
+    <div class="diag-header">
+      <div class="diag-icon green">✓</div>
+      <div class="diag-label">What I'd do differently</div>
+      <div class="diag-tag green">The plan</div>
+      <div class="diag-chevron">▼</div>
+    </div>
+    <div class="diag-body">Target STR investor platforms and Facebook groups directly. Present full income data upfront. Commission drone + twilight photography. Create a dedicated property website with revenue projections. Market to Austin and San Antonio second-home buyers specifically — your most likely buyer is 45–65, high income, within 90 minutes. Price based on income cap rate, not $/sq ft. And solve the showing problem with a dedicated video tour and flexible access window for serious buyers.</div>
+  </div>
+
+  <!-- Quiz -->
+  <div class="section-head">
+    <div class="line"></div>
+    <div class="label">Where Are You Now?</div>
+    <div class="line"></div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-title">Three quick questions</div>
+    <div class="quiz-sub">Help me understand your situation so I can give you a useful recommendation.</div>
+
+    <div class="quiz-progress">
+      <div class="quiz-dot active" id="dot-0"></div>
+      <div class="quiz-dot" id="dot-1"></div>
+      <div class="quiz-dot" id="dot-2"></div>
+    </div>
+
+    <div class="quiz-step active" id="step-0">
+      <div class="quiz-q">What's your priority for the property right now?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="selectOption(0, 'sell-now', this)">I want to relist and sell — I'm done waiting</button>
+        <button class="quiz-option" onclick="selectOption(0, 'sell-right', this)">I'll sell, but only if I can get close to my number</button>
+        <button class="quiz-option" onclick="selectOption(0, 'str-income', this)">I'm keeping the STR income going and taking my time</button>
+        <button class="quiz-option" onclick="selectOption(0, 'unsure', this)">I'm genuinely not sure what to do next</button>
+      </div>
+    </div>
+
+    <div class="quiz-step" id="step-1">
+      <div class="quiz-q">What do you think was the main reason it didn't sell?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="selectOption(1, 'price', this)">The price was too high for the market</button>
+        <button class="quiz-option" onclick="selectOption(1, 'marketing', this)">It didn't get in front of the right buyers</button>
+        <button class="quiz-option" onclick="selectOption(1, 'showings', this)">Showing access was a problem with STR guests</button>
+        <button class="quiz-option" onclick="selectOption(1, 'unknown', this)">I honestly don't know — that's the frustrating part</button>
+      </div>
+    </div>
+
+    <div class="quiz-step" id="step-2">
+      <div class="quiz-q">What matters most to you in working with a new agent?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="selectOption(2, 'strategy', this)">A clear, different strategy — not the same approach again</button>
+        <button class="quiz-option" onclick="selectOption(2, 'communication', this)">Regular, honest communication about what's happening</button>
+        <button class="quiz-option" onclick="selectOption(2, 'experience', this)">Experience specifically with river properties and STRs</button>
+        <button class="quiz-option" onclick="selectOption(2, 'speed', this)">Getting it sold as quickly as possible</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div class="result-card" id="result-card">
+    <div class="result-score-row">
+      <div class="result-gauge">
+        <div class="result-score-num" id="result-score">91</div>
+        <div class="result-score-label">sell score</div>
+      </div>
+      <div class="result-headline" id="result-headline">This property will sell — to the right buyer.</div>
+    </div>
+    <div class="result-body" id="result-body">Loading your personalized assessment...</div>
+    <div class="cta-block">
+      <div class="cta-title">Ready for a real conversation?</div>
+      <div class="cta-sub">15 minutes. No pitch. Just an honest look at your property, your options, and what a different approach would look like.</div>
+      <div class="cta-buttons">
+        <a href="tel:+12105550000" class="btn btn-primary">Call [Your Name]</a>
+        <a href="sms:+12105550000?body=Hi, I just completed the river property assessment for 1890 Ponderosa and I'd like to connect." class="btn btn-secondary">Send a text</a>
+        <a href="mailto:you@email.com?subject=1890 Ponderosa Assessment&body=Hi, I reviewed the assessment for my property and would like to talk." class="btn btn-secondary">Email me</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Static CTA -->
+  <div class="cta-block" id="static-cta" style="margin-top: 8px;">
+    <div class="cta-title">Questions? I'm easy to reach.</div>
+    <div class="cta-sub">Call, text, or email — your choice, your timeline. No pressure.</div>
+    <div class="cta-buttons">
+      <a href="tel:+12105550000" class="btn btn-primary">Call [Your Name]</a>
+      <a href="sms:+12105550000" class="btn btn-secondary">Text me</a>
+      <a href="mailto:you@email.com" class="btn btn-secondary">Email</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Prepared exclusively for 1890 Ponderosa Dr · New Braunfels, TX 78132<br>
+  [Your Name] · [Brokerage] · [License #] · [Phone]
+</div>
+
+<script>
+  var answers = {};
+
+  function toggleDiag(card) {
+    var body = card.querySelector('.diag-body');
+    var chev = card.querySelector('.diag-chevron');
+    var open = body.classList.contains('open');
+    document.querySelectorAll('.diag-body').forEach(function(b){ b.classList.remove('open'); });
+    document.querySelectorAll('.diag-chevron').forEach(function(c){ c.classList.remove('open'); });
+    if (!open) { body.classList.add('open'); chev.classList.add('open'); }
+  }
+
+  function selectOption(step, value, btn) {
+    var stepEl = document.getElementById('step-' + step);
+    stepEl.querySelectorAll('.quiz-option').forEach(function(b){ b.classList.remove('selected'); });
+    btn.classList.add('selected');
+    answers[step] = value;
+    document.getElementById('dot-' + step).classList.remove('active');
+    document.getElementById('dot-' + step).classList.add('done');
+    setTimeout(function() {
+      var next = step + 1;
+      if (next <= 2) {
+        stepEl.classList.remove('active');
+        document.getElementById('step-' + next).classList.add('active');
+        document.getElementById('dot-' + next).classList.add('active');
+      } else {
+        stepEl.classList.remove('active');
+        showResult();
+      }
+    }, 380);
+  }
+
+  function showResult() {
+    var goal = answers[0], reason = answers[1], priority = answers[2];
+    var score = 88, headline = '', body = '';
+
+    if (goal === 'sell-now') {
+      score = 93;
+      headline = 'Motivated seller + rare property = the right combination.';
+      body = 'You\'re ready to move, and honestly, that works in your favor. The biggest mistake with a property like yours is sitting on it too long and letting the market perception solidify. A fresh listing with a new strategy — targeted at STR investors and second-home buyers specifically — can create urgency that 309 days on MLS couldn\'t.';
+    } else if (goal === 'sell-right') {
+      score = 87;
+      headline = 'Your number may be more achievable than you think.';
+      body = 'A comparable riverfront property nearby is currently listed at $945K. Your price isn\'t the problem — the audience was. When we put the actual STR income data in front of the right investor buyers, the math changes completely. Let me show you what a realistic price range looks like with the right marketing.';
+    } else if (goal === 'str-income') {
+      score = 82;
+      headline = 'The STR income is real — let it work for you while we plan.';
+      body = 'Keeping the income flowing is a smart hedge. But here\'s something worth considering: every month of STR operation adds to your documented revenue history, which makes the investment case stronger for a buyer. We could use this time to build a proper income report and prepare a buyer-ready package for the right moment.';
+    } else if (goal === 'unsure') {
+      score = 85;
+      headline = 'Uncertainty after 309 days is completely understandable.';
+      body = 'You gave a lot of time to a listing that didn\'t work. Before you decide anything, let me walk you through three realistic paths: relist with a new strategy, continue STR while waiting for the right buyer, or explore off-market options with investor networks. Each has a real number attached. That usually makes the decision much clearer.';
+    }
+
+    if (reason === 'marketing') {
+      body += ' You\'re right about the marketing — and that\'s the most fixable problem of all. I have a specific plan for reaching the buyer pool this property actually needs.';
+    } else if (reason === 'showings') {
+      body += ' The STR showing problem is real, and I\'ve dealt with it before. The answer is a combination of dedicated video tours and creating buyer-ready windows that don\'t disrupt your bookings.';
+    } else if (reason === 'unknown') {
+      body += ' Not knowing is the most frustrating position to be in. I\'d like to walk you through what I found in my research so at minimum you have clarity on what happened, regardless of what you decide next.';
+    }
+
+    if (priority === 'experience') {
+      body += ' River properties and STRs are a specific niche — I understand both the buyer psychology and the income valuation that makes these deals work.';
+    } else if (priority === 'communication') {
+      body += ' I commit to weekly updates with real data — showing activity, buyer feedback, market movement — not just "we\'re working on it."';
+    }
+
+    document.getElementById('result-score').textContent = score;
+    document.getElementById('result-headline').textContent = headline;
+    document.getElementById('result-body').textContent = body;
+    document.getElementById('result-card').classList.add('show');
+    document.getElementById('result-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+</script>
+</body>
+</html>
